@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сравнение фильмов</title>
+    <link rel="stylesheet"
+          href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+          integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+            integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">FILMASH</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Compare</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/rating">Rating</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row justify-content-center">
+        {% for index, film in enumerated_films %}
+            <div class="card my-3 mx-3" style="width: 18rem;">
+                <img class="card-img" src="static/posters/{{ film.posterfile }}" alt="Card image">
+                <div class="card-img-overlay">
+                    <h5 class="card-title">
+                        <span class="badge badge-primary">#{{ index }}</span>
+                    </h5>
+
+                    <h4><span class="badge badge-pill badge-primary">{{ '{:0.2f}'.format(film.rating*10) }}</span></h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ film.filmname }}</h5>
+                    <p class="card-text">{{ film.filmdesc[:300] }}...</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
